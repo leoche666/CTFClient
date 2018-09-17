@@ -1,0 +1,29 @@
+DEVICE:
+  HOST:
+   # - 10.4.148.231
+   - 10.4.152.87
+  SERIALS:
+    'WTKDU16623001390': 'honor8'
+    'BY2XEE1563011153': 'honor4'
+ENV:
+  TESTAPP:
+    package: com.xxx.xxx.xxx
+    scene: xxx
+    template_url: xxx
+    api_url: xxx
+    version: 37
+    expansion: 370
+    build: 268
+  TESTCASE:
+    template: common/templates
+    params: common/params
+    sounds: common/sounds
+    workspace: workspace
+    report:
+      root: report
+      image: report/image
+      log: report/log
+  #string默认编码格式
+  LANGUAGE_ENCODE: utf-8
+  #unicode默认编码格式
+  LANGUAGE_DECODE: gbk

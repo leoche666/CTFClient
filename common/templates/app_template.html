@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    {% macro enter_native_index_page() -%}
+        <cluster id="杀死app进入2D登录界面" module="common.templates" exec="CUSTOM(EnterHomePage)" flow="setup"/>
+    {%- endmacro %}
+
+    {% macro login() -%}
+        <cluster id="进入登录界面并输入用户名密码登录，并回到竖版首页" module="common.templates" exec="CUSTOM(LoginAndEnterHomePage)" flow="setup" />
+        <rec key="登录成功提示">退出登录</rec>
+    {%- endmacro %}
+</html>

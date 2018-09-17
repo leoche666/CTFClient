@@ -1,0 +1,65 @@
+<varmap id="ctf-testcases" xmlns="https://github.com/leoche666" >
+    {% macro opt(fnc) -%}
+        <opt fnc="{{ fnc }}">
+            {% for i in range( varargs|count )%}
+                <arg>{{ varargs[i] }}</arg>
+            {% endfor %}
+        </opt>
+    {%- endmacro %}
+
+    {% macro custom(id, module, exec, flow="setup", repetition=1)  -%}
+        {% for i in range( repetition )%}
+            <cluster id="{{ id }}" module="{{ module }}" exec="{{ exec }}" flow="{{ flow }}" />
+        {% endfor %}
+    {%- endmacro %}
+
+    {% macro cluster(id, module, exec, flow="setup", repetition=1)  -%}
+        {% for i in range( repetition )%}
+            <cluster id="{{ id }}" module="{{ module }}" exec="{{ exec }}" flow="{{ flow }}">
+                {{ caller() }}
+            </cluster>
+        {% endfor %}
+    {%- endmacro %}
+
+    {% macro screenshot(exp="Exception") -%}
+        {% if exp == "Exception" %}
+            <cluster id="向server注册异常截图功能" module="client" exec="CUSTOM(ScreenshotWhenException)" flow="setup"/>
+        {% elif exp == "VarAbort" %}
+            <cluster id="向server注册异常截图功能" module="client" exec="CUSTOM(ScreenshotWhenVarAbort)" flow="setup"/>
+        {% elif exp == "GroupAbort" %}
+            <cluster id="向server注册异常截图功能" module="client" exec="CUSTOM(ScreenshotWhenGroupAbort)" flow="setup"/>
+        {% elif exp == "VarNotRun" %}
+            <cluster id="向server注册异常截图功能" module="client" exec="CUSTOM(ScreenshotWhenVarNotRun)" flow="setup"/>
+        {% else %}
+            <cluster id="向server注册异常截图功能" module="client" exec="CUSTOM(ScreenshotWhenVarUnsupported)" flow="setup"/>
+        {% endif %}
+    {%- endmacro %}
+
+    {% macro rerun(exp="Exception", count=1) -%}
+        {% if exp == "Exception" %}
+            <cluster id="向server注册异常重跑" module="client" exec="CUSTOM(RerunWhenException)" flow="setup"/>
+        {% elif exp == "VarAbort" %}
+            <cluster id="向server注册异常重跑" module="client" exec="CUSTOM(RerunWhenVarAbort)" flow="setup"/>
+        {% endif %}
+        <rec key="count">{{ count }}</rec>
+    {%- endmacro %}
+
+    {% macro init_app() -%}
+        <cluster id="初始化APP环境" module="common.templates" exec="CUSTOM(InitApp)" flow="setup"/>
+    {%- endmacro %}
+
+    {% macro clear_app() -%}
+        <cluster id="清理环境" module="common.templates" exec="INTURN" flow="cleanup">
+            <opt id="关闭app" fnc="device.app_clear">
+                <arg>{{'conf'|get_params("ENV.TESTAPP.package") }}</arg>
+            </opt>
+        </cluster>
+    {%- endmacro %}
+
+    {% block content %}
+    {% endblock %}
+
+    <grp permutation="rows" >
+        {% block grp %}{% endblock %}
+    </grp>
+</varmap>

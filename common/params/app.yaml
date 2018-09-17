@@ -1,0 +1,47 @@
+configuration:
+  definition_list:
+    - 1080P
+    - 720P
+    - 高清
+    - 流畅
+    - 自动
+    - 极速
+  acconts:
+    # 普通账号用户名
+    user_common:
+      username: 14400217036
+      password: xxxxxx
+    # VIP账号用户名
+    user_vip: &ticket
+      username: 13951768301
+      password: xxxxx
+    # VIP账号用户名_有点播券
+    user_vip_ticket:
+      <<: *ticket
+
+
+native_ui_tree:
+  # 首页
+  navigation_bar_bottom:
+    # 我的
+    my_tab:
+      resourceId: com.xxxx.xxxx.cb:id/id_tab_me_img
+      className: android.widget.ImageButton
+  # 设备页面
+  device_page:
+    # 继续
+    continue_btn:
+      resourceId: com.xxxx.xxxx.cb:id/continue_button
+      className: android.widget.Button
+      text: 继续
+  # 搜索页面
+  search_page:
+    # 搜索输入框
+    input_edit:
+      resourceId: com.xxxx.xxxx.cb:id/input_edit
+      className: android.widget.EditText
+
+
+sounds_map:
+  test: "common/params/sounds/my.mp3"
+

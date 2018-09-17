@@ -1,0 +1,11 @@
+.git
+.idea
+*.pyc
+.DS_Store
+python_log_.log
+report/image/**
+report/log/**
+.ipynb_checkpoints
+screenshot
+*.log
+*.apk

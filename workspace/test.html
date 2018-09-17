@@ -1,0 +1,29 @@
+{% extends "ctf_template.html" %}
+{% block content %}
+    {% from 'app_template.html' import play_one_video %}
+
+
+    <var set="1" lvl="2" vid="1" id="启动时间-1" permutation="rows">
+        {#        使用代码编写用例#}
+        <cluster id="验证并点击跳过按钮" module="workspace.start_time" exec="CUSTOM(TestCase1)" flow="setup"/>
+    </var>
+
+    <var set="1" lvl="1" vid="2" id="普通视频播放中，播控显示正确" permutation="rows">
+        {#        调用jinja宏减少用例编写的冗余#}
+        {{ play_one_video(isCommonVideoBySearch=True, video="生化危机：终章（3D）") }}
+        {#        html中调用接口，并传参验证#}
+        <cluster id="展示音量、清晰度、视角锁定按钮、设置按钮、播控下方显示视频名称、退出、视角复位按钮" module="common.logic.show" exec="INTURN" flow="verify">
+            <opt id="展示音量" fnc="verify_show_for_player">
+                <arg>{{ "app"|ctf_ui("unity_ui_tree.broadcast_cl_common.volume") }}</arg>
+                <arg>音量</arg>
+            </opt>
+        </cluster>
+    </var>
+{% endblock %}
+
+{% block grp %}
+    {{ init_app() }}
+{#    {{ rerun(exp='VarAbort', count=2) }}#}
+    {{ screenshot() }}
+    {{ clear_app() }}
+{% endblock %}
