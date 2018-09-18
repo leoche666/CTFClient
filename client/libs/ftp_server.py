@@ -13,7 +13,7 @@ def main(homedir):
 
     # Define a new user having full r/w permissions and a read-only
     # anonymous user
-    authorizer.add_user('ctf', 'qiyi123456', homedir=homedir, perm='elradfmwM')
+    authorizer.add_user('ctf', 'qi123456', homedir=homedir, perm='elradfmwM')
 
     # Instantiate FTP handler class
     handler = FTPHandler

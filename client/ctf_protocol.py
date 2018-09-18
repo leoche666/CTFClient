@@ -1,7 +1,7 @@
 # -*- coding=utf-8 -*-
 '''
 @modified: 20171025
-@author: leochechen@qiyi.com
+@author: leochechen
 @summary: Client和Server通信命令。传输数据类型为Json格式，以下为示例：
 {
     CTFCMD: 协议命令,

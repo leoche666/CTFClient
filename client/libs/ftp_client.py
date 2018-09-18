@@ -112,7 +112,7 @@ def getServerFile(dir_ftp, filename, host, port, username, password):
 
 if __name__ == "__main__":
     # 下载
-    getServerFile(".", "hello.js", "10.110.87.14", 2121, "ctf", "qiyi123456")
+    getServerFile(".", "hello.js", "10.110.87.14", 2121, "ctf", "qi123456")
     # 上传
-    uploadFile(".", "upload_demo.txt", "words.txt", "10.110.87.14", 2121, "ctf", "qiyi123456")
+    uploadFile(".", "upload_demo.txt", "words.txt", "10.110.87.14", 2121, "ctf", "qi123456")
     print '****done'
